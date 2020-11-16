@@ -20,4 +20,5 @@ from predict_api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stocklist/', views.stocklist),
+    path('allStockList/', views.allStockList),
 ]

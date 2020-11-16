@@ -63,7 +63,7 @@ class DBUpdater:
             self.codes[df['code'].values[idx]] = df['company'].values[idx]
 
         with self.conn.cursor() as curs:
-            sql = "SELECT max(last_update) FROM company_info"
+            sql = "SELECT max(last_update) FROM predict_api_companyinfo"
             curs.execute(sql)
             rs = curs.fetchone()
             today = datetime.today().strftime('%Y-%m-%d')
@@ -73,11 +73,11 @@ class DBUpdater:
                 for idx in range(len(krx)):
                     code = krx.code.values[idx]
                     company = krx.company.values[idx]
-                    sql = f"REPLACE INTO company_info (code, company, last_update) VALUES ('{code}', '{company}', '{today}')"
+                    sql = f"REPLACE INTO predict_api_companyinfo (code, company, last_update) VALUES ('{code}', '{company}', '{today}')"
                     curs.execute(sql)
                     self.codes[code] = company
                     tmnow = datetime.now().strftime('%Y-%m-%d %H:%M')
-                    print(f"[{tmnow}] {idx:04d} REPLACE INTO company_info VALUES({code}, {company}, {today})")
+                    print(f"[{tmnow}] {idx:04d} REPLACE INTO predict_api_companyinfo VALUES({code}, {company}, {today})")
                     self.conn.commit()
 
     def read_naver(self, code, company, pages_to_fetch):
@@ -121,10 +121,10 @@ class DBUpdater:
         """네이버 금융에서 읽어온 주식 시세를 DB에 REPLACE"""
         with self.conn.cursor() as curs:
             for r in df.itertuples():
-                sql = f"REPLACE INTO daily_price VALUES ('{code}','{r.date}',{r.open},{r.high},{r.low},{r.close},{r.diff},{r.volume})"
+                sql = f"REPLACE INTO predict_api_dailyprice VALUES ('{code}','{r.date}',{r.open},{r.high},{r.low},{r.close},{r.diff},{r.volume})"
                 curs.execute(sql)
             self.conn.commit()
-            print('[{}] #{:04d} {} ({}) : {} rows > REPLACE INTO daily_price [OK]'.format(
+            print('[{}] #{:04d} {} ({}) : {} rows > REPLACE INTO predict_api_dailyprice [OK]'.format(
                 datetime.now().strftime('%Y-%m-%d %H:%M'), num + 1, company, code, len(df)))
 
     def update_daily_price(self, pages_to_fetch):

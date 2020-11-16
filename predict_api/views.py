@@ -24,3 +24,9 @@ def stocklist(request):
     #         return JsonResponse(serializer.data, status=201)
     #     return JsonResponse(serializer.errors, status=400)
 
+@csrf_exempt
+def allStockList(request):
+    if request.method == 'GET':
+        query_set = CompanyInfo.objects.all()
+        serializer = CompanyInfoSerializer(query_set, many=True)
+        return JsonResponse(serializer.data, safe=False)
