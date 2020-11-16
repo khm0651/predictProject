@@ -25,7 +25,7 @@ SECRET_KEY = 'td-xsvlfmade*os4$rfqy96@%dpe8jzqf8-@3na8eeufbnz5-l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
