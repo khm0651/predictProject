@@ -77,19 +77,19 @@ WSGI_APPLICATION = 'predict.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'INVESTAR', # DB명
-        # 'USER': 'rhkrgkals', # 데이터베이스 계정
-        # 'PASSWORD': 'rhkrgkals2@', # 계정 비밀번호
-        # 'HOST': 'localhost', # 데이테베이스 주소(IP)
-        # 'PORT': '3306', # 데이터베이스 포트(보통은 3306)
-
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'investar', # DB명
-        'USER': 'root', # 데이터베이스 계정
+        'NAME': 'INVESTAR', # DB명
+        'USER': 'rhkrgkals', # 데이터베이스 계정
         'PASSWORD': 'rhkrgkals2@', # 계정 비밀번호
         'HOST': 'localhost', # 데이테베이스 주소(IP)
         'PORT': '3306', # 데이터베이스 포트(보통은 3306)
+
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'investar', # DB명
+        # 'USER': 'root', # 데이터베이스 계정
+        # 'PASSWORD': 'rhkrgkals2@', # 계정 비밀번호
+        # 'HOST': 'localhost', # 데이테베이스 주소(IP)
+        # 'PORT': '3306', # 데이터베이스 포트(보통은 3306)
     }
 }
 
