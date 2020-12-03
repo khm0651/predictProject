@@ -8,6 +8,16 @@ from rest_framework.parsers import JSONParser
 # Create your views here.
 
 @csrf_exempt
+def stockPriceList(request):
+    if request.method == 'GET':
+        # query_set = CompanyInfo.objects.all()
+        # serializer = CompanyInfoSerializer(query_set, many=True)
+        query_set = DailyPrice.objects.filter(code=request.GET['code'])
+        serializer = DailyPriceSerializer(query_set, many=True)
+
+        return JsonResponse(serializer.data, safe=False)
+
+@csrf_exempt
 def stocklist(request):
     if request.method == 'GET':
         # query_set = CompanyInfo.objects.all()
@@ -30,3 +40,5 @@ def allStockList(request):
         query_set = CompanyInfo.objects.all()
         serializer = CompanyInfoSerializer(query_set, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+
