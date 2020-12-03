@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('stocklist/', views.stocklist),
     path('allStockList/', views.allStockList),
-    path('allStockList/', views.stockPriceList),
+    path('stockPriceList/', views.stockPriceList),
 ]
